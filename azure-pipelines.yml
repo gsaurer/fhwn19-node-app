@@ -12,10 +12,10 @@ variables:
   azureSubscription: '4dd25e4b-4fba-4a42-a4d9-e336ba056c47'
   
   # Web app name
-  webAppName: 'fhwn19-nod-app-01'
+  webAppName: 'fhwn19-nod-app'
   
   # Environment name
-  environmentName: 'fhwn19-nod-app-01'
+  environmentName: 'fhwn19-nod-app'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
