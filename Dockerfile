@@ -1,28 +1,23 @@
 FROM node:lts-alpine
 
-# install editor	
-RUN apt-get -y update \	
-    && apt-get install -y vim	
-
-# install simple http server for serving static content	# install simple http server for serving static content
-RUN npm install -g http-server	RUN npm install -g http-server
-
-# copy both 'package.json' and 'package-lock.json' (if available)	# copy both 'package.json' and 'package-lock.json' (if available)
-COPY package*.json ./	COPY package*.json ./
+# Create app directory	# Create app directory
+WORKDIR /usr/src/app
 
 
-# install project dependencies	# install project dependencies leaving out dev dependencies
-RUN npm install	RUN npm install --production
+# Install app dependencies	# Bundle app source
+# A wildcard is used to ensure both package.json AND package-lock.json are copied	COPY . .
+# where available (npm@5+)	
+COPY package*.json ./	
 
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)	# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY . .
+RUN npm install
+# If you are building your code for production	# If you are building your code for production
+# RUN npm ci --only=production	# RUN npm ci --only=production
 
 
-# build app for production with minification	# build app for production with minification
-RUN npm run build
+# Bundle app source	
+COPY . .	
 
+EXPOSE 8080
 
-EXPOSE 8080	
-
-CMD [ "http-server", "dist" ] 
+CMD [ "node", "app.js" ] 	
