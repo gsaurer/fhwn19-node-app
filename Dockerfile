@@ -1,15 +1,28 @@
 FROM node:lts-alpine
 
-# Create app directory
-WORKDIR /usr/src/app
+# install editor	
+RUN apt-get -y update \	
+    && apt-get install -y vim	
 
-# Bundle app source
+# install simple http server for serving static content	# install simple http server for serving static content
+RUN npm install -g http-server	RUN npm install -g http-server
+
+# copy both 'package.json' and 'package-lock.json' (if available)	# copy both 'package.json' and 'package-lock.json' (if available)
+COPY package*.json ./	COPY package*.json ./
+
+
+# install project dependencies	# install project dependencies leaving out dev dependencies
+RUN npm install	RUN npm install --production
+
+
+# copy project files and folders to the current working directory (i.e. 'app' folder)	# copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-EXPOSE 80
+# build app for production with minification	# build app for production with minification
+RUN npm run build
 
-CMD ["npm", "run", "start"]
+
+EXPOSE 8080	
+
+CMD [ "http-server", "dist" ] 
