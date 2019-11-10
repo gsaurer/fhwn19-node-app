@@ -10,6 +10,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  imageName: 'gsaurer/fhwn19-node-app'
 
 stages:
 - stage: Build
