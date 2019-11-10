@@ -1,0 +1,19 @@
+version: "3"
+services:
+  api:
+    image: fhwn19-node-app
+    build: .
+    networks:
+      - frontend
+    ports:
+      - "80:8080"
+
+  web-cli:
+    image: fhwn19-node-app
+    networks:
+      - frontend
+    command: sh
+
+networks:
+  frontend:
+    driver: bridge
