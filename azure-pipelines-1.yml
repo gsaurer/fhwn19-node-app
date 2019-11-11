@@ -1,4 +1,4 @@
-# Docker
+
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -36,3 +36,14 @@ stages:
                 dockerHub
               tags: |
                 latest
+
+          # Docker
+          - task: Kubernetes@1
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: 'kubernetes-fhwn-19'
+              command: 'apply'
+              useConfigurationFile: true
+              configuration: 'Kubernetes.yaml'
+              secretType: 'dockerRegistry'
+              containerRegistryType: 'Azure Container Registry'
