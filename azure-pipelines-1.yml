@@ -41,7 +41,7 @@ stages:
           - task: Kubernetes@1
             inputs:
               connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: 'fhwn-19'
+              kubernetesServiceEndpoint: 'kubernetes-fhwn-19'
               command: 'apply'
               useConfigurationFile: true
               configuration: 'Kubernetes.yaml'
