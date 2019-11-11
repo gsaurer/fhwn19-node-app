@@ -7,6 +7,9 @@ metadata:
 spec:
   ports:
     - port: 80
+      targetPort: fhwn19-node-app
+      protocol: TCP
+      name: http
   selector:
     app: fhwn19-node-app
     tier: frontend
