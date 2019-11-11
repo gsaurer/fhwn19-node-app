@@ -37,6 +37,7 @@ spec:
       containers:
         - image: gsaurer/fhwn19-node-app:latest
           name: fhwn19-node-app
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
               name: fhwn19-node-app
