@@ -6,7 +6,7 @@ services:
     networks:
       - frontend
     ports:
-      - "80:80"
+      - "80:8080"
 
   web-cli:
     image: fhwn19-node-app
