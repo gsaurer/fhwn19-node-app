@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: fhwn19-node-app
+      targetPort: fhwn19-node-app-port
       protocol: TCP
       name: http
   selector:
@@ -40,4 +40,4 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-              name: fhwn19-node-app
+              name: fhwn19-node-app-port
